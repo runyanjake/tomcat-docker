@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  website:
+    container_name: maven-website
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - 8908:8080
+
