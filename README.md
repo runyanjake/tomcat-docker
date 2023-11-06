@@ -52,3 +52,10 @@ Dockerfile is configured to copy in `ROOT.war` from the top level of this repo. 
 
 Build with the included docker-compose.
 
+### New Rest Endpoint Module
+
+1. Create new module to house the endpoint.
+
+`mvn archetype:generate -DgroupId=com.helloworld.helloendpoint  -DartifactId=hello-endpoint`
+
+

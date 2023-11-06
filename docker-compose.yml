@@ -1,11 +1,23 @@
 version: "3"
 
+networks:
+  traefik_traefik-network:
+    external: true
+
 services:
   website:
-    container_name: maven-website
+    container_name: tomcat-website
+    networks:
+      - traefik_traefik-network
     build:
       context: .
       dockerfile: Dockerfile
     ports:
     - 8908:8080
+    labels:
+      - traefik.http.routers.tomcat-website.rule=Host(`tomcat.whitney.rip`)
+      - traefik.http.routers.tomcat-website.tls=true
+      - traefik.http.routers.tomcat-website.tls.certresolver=lets-encrypt
+      - traefik.http.services.tomcat-website.loadbalancer.server.port=8080
+      - traefik.port=8908
 
